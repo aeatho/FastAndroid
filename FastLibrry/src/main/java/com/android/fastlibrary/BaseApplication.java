@@ -33,10 +33,10 @@ import com.google.gson.GsonBuilder;
 /**
  * Do one thing at a time, and do well!
  *
- * @Prject: FugaoApps
- * @Location: com.fugao.common.BaseApplication
+ * @Prject: FastAndroid
+ * @Location: com.android.fastlibrary.BaseApplication
  * @Description: TODO
- * @author: 席强    xiqiang@fugao.com
+ * @author: loQua.Xee    loquaciouser@gmail.com
  * @date: 2014/7/27 17:14
  * @version: V1.0
  */
