@@ -90,7 +90,7 @@ public abstract class FastWelcomeActivity extends BaseActivity implements View.O
             indicatorLayout.addView(indicators[i]);
         }
 
-        PagerAdapter pagerAdapter = new BasePagerAdapter(views);
+        PagerAdapter pagerAdapter = new WelcomePagerAdapter(views);
         viewPager.setAdapter(pagerAdapter); // 设置适配器
         viewPager.setOnPageChangeListener(this);
     }
@@ -147,10 +147,10 @@ public abstract class FastWelcomeActivity extends BaseActivity implements View.O
 
     }
 
-    private class BasePagerAdapter extends PagerAdapter {
+    private class WelcomePagerAdapter extends PagerAdapter {
         private List<View> views;
 
-        public BasePagerAdapter(final ArrayList<View> views) {
+        public WelcomePagerAdapter(final ArrayList<View> views) {
             this.views = views;
         }
 
