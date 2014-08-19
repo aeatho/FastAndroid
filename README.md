@@ -1,1 +1,1 @@
-A library for android
+A library for android apps
