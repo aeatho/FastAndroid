@@ -27,6 +27,11 @@ package com.android.fastlibrary.ui.activity;
  * @version: V1.0
  */
 
-public class FastSubTabActivity {
+public class FastSubTabActivity extends BaseActivity {
     private static final String TAG = "FastAndroid-FastSubTabActivity";
+
+    @Override
+    protected void setRootView() {
+
+    }
 }

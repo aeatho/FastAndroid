@@ -27,6 +27,11 @@ package com.android.fastlibrary.ui.activity;
  * @version: V1.0
  */
 
-public class FastSearchActivity {
+public class FastSearchActivity extends BaseActivity {
     private static final String TAG = "FastAndroid-FastSearchActivity";
+
+    @Override
+    protected void setRootView() {
+
+    }
 }

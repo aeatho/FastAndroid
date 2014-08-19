@@ -27,6 +27,11 @@ package com.android.fastlibrary.ui.activity;
  * @version: V1.0
  */
 
-public class FastDrawerActivity {
+public class FastDrawerActivity extends BaseActivity {
     private static final String TAG = "FastAndroid-FastDrawerActivity";
+
+    @Override
+    protected void setRootView() {
+
+    }
 }

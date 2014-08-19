@@ -27,6 +27,11 @@ package com.android.fastlibrary.ui.activity;
  * @version: V1.0
  */
 
-public class FastSettingActivity {
+public class FastSettingActivity extends BaseActivity {
     private static final String TAG = "FastAndroid-FastSettingActivity";
+
+    @Override
+    protected void setRootView() {
+
+    }
 }

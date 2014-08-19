@@ -27,6 +27,11 @@ package com.android.fastlibrary.ui.activity;
  * @version: V1.0
  */
 
-public class FastScanActivity {
+public class FastScanActivity extends BaseActivity {
     private static final String TAG = "FastAndroid-FastScanActivity";
+
+    @Override
+    protected void setRootView() {
+
+    }
 }
