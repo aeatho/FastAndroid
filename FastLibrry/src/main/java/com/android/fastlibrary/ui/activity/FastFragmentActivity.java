@@ -27,7 +27,7 @@ import com.android.fastlibrary.ui.fragment.BaseFragment;
  * Do one thing at a time, and do well!
  *
  * @Prject: FastAndroid
- * @Location: com.android.fastlirary.ui.activity.FastActivity
+ * @Location: com.android.fastlirary.ui.activity.FastFragmentActivity
  * @Description: TODO
  * @author: loQua.Xee    loquaciouser@gmail.com
  * @date: 2014/8/16 15:43
@@ -39,20 +39,16 @@ public abstract class FastFragmentActivity extends BaseActivity {
 
     /** 改变界面的fragment */
     protected void changeFragment(int resView, BaseFragment targetFragment) {
-        FragmentTransaction transaction = getSupportFragmentManager()
-                .beginTransaction();
-        transaction.replace(resView, targetFragment, targetFragment.getClass()
-                .getName());
-        transaction.setCustomAnimations(R.anim.slide_left_in,
-                R.anim.slide_left_out);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(resView, targetFragment, targetFragment.getClass().getName());
+        transaction.setCustomAnimations(R.anim.slide_left_in, R.anim.slide_left_out);
         transaction.commit();
     }
 
     /**
      * 你应该在这里调用changeFragment(R.id.content, addStack, targetFragment);
      *
-     * @param targetFragment
-     *            要改变的Activity
+     * @param targetFragment 要改变的Activity
      */
     public abstract void changeFragment(BaseFragment targetFragment);
 }

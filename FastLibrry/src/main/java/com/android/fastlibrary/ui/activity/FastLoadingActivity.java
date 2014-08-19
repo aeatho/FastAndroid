@@ -24,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.android.fastlibrary.R;
+import com.android.fastlibrary.util.PreferenceHelper;
 
 
 /**
@@ -49,14 +50,6 @@ public abstract class FastLoadingActivity extends BaseActivity {
      */
     private boolean hiddenProgressBar = false;
 
-
-    /**
-     * 设置启动界面(有默认背景图片)
-     */
-    protected int getRootBackground() {
-        return R.drawable.bg_loading;
-    }
-
     /**
      * 默认设置为全屏、竖屏锁定显示
      */
@@ -64,6 +57,20 @@ public abstract class FastLoadingActivity extends BaseActivity {
         setHiddenActionBar(true);
         setAllowFullScreen(true);
         setScreenOrientation(ScreenOrientation.VERTICAL);
+    }
+
+    /**
+     * 程序是否是第一次进入
+     */
+    protected boolean isFirst() {
+        return PreferenceHelper.getBoolean("First", true);
+    }
+
+    /**
+     * 设置启动界面(有默认背景图片)
+     */
+    protected int getRootBackground() {
+        return R.drawable.bg_loading;
     }
 
     /**

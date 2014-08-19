@@ -43,13 +43,33 @@ import com.android.fastlibrary.ui.UIHelper;
  */
 
 @SuppressLint("SetJavaScriptEnabled")
-public final class FastBrowserActivity extends BaseActivity {
+public abstract class FastBrowserActivity extends BaseActivity {
     private static final String TAG = "Fugao-FastBrowserActivity";
-
+    private static final String EXTRA_STRING_NAME = "url_string";
     protected WebView webView;
+    View.OnClickListener toolbar_listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int i = v.getId();
+            if (i == R.id.browser_toolbar_btn_back) {
+                if (webView.canGoBack()) {
+                    webView.goBack();
+                }
+
+            } else if (i == R.id.browser_toolbar_btn_forward) {
+                if (webView.canGoForward()) {
+                    webView.goForward();
+                }
+
+            } else if (i == R.id.browser_toolbar_btn_refresh) {
+                webView.reload();
+
+            } else {
+            }
+        }
+    };
     private ProgressBar progressBar;
     private ImageButton btnBack, btnForward, btnRefresh;
-    private static final String EXTRA_STRING_NAME = "url_string";
 
     public FastBrowserActivity() {
         setHiddenActionBar(false);
@@ -160,9 +180,9 @@ public final class FastBrowserActivity extends BaseActivity {
         });
     }
 
-    protected void initWebView(final WebView webView) {}
-
     ;
+
+    protected void initWebView(final WebView webView) {}
 
     private void setActionBarTitle(String title) {
         SpannableString spannableString = new SpannableString(title);
@@ -184,29 +204,6 @@ public final class FastBrowserActivity extends BaseActivity {
         btnForward.setOnClickListener(toolbar_listener);
         btnRefresh.setOnClickListener(toolbar_listener);
     }
-
-
-    View.OnClickListener toolbar_listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            int i = v.getId();
-            if (i == R.id.browser_toolbar_btn_back) {
-                if (webView.canGoBack()) {
-                    webView.goBack();
-                }
-
-            } else if (i == R.id.browser_toolbar_btn_forward) {
-                if (webView.canGoForward()) {
-                    webView.goForward();
-                }
-
-            } else if (i == R.id.browser_toolbar_btn_refresh) {
-                webView.reload();
-
-            } else {
-            }
-        }
-    };
 
     /**
      * 返回事件屏蔽
