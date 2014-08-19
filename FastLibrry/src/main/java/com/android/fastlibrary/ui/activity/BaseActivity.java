@@ -29,6 +29,7 @@ import android.view.WindowManager;
 import com.android.fastlibrary.AppManager;
 import com.android.fastlibrary.R;
 import com.android.fastlibrary.ui.UIHelper;
+import com.android.fastlibrary.util.app.ExitDoubleClick;
 import com.android.fastlibrary.volley.RequestManager;
 
 /**
@@ -44,47 +45,33 @@ import com.android.fastlibrary.volley.RequestManager;
 
 public abstract class BaseActivity extends CoreActivity {
     private static final String TAG = "Fugao-BaseActivity";
-
-    /**
-     * Activity显示方向
-     */
-    public static enum ScreenOrientation {
-        HORIZONTAL, VERTICAL, AUTO
-    }
-
     /**
      * 上下文
      */
     public Context context;
-
-    /**
-     * 是否允许全屏
-     */
-    private boolean allowFullScreen = false;
-
-    /**
-     * 是否隐藏ActionBar
-     */
-    private boolean hiddenActionBar = false;
-
-    /**
-     * 是否启用框架的退出界面
-     */
-    private boolean openBackListener = true;
-
-    /**
-     * 屏幕方向
-     */
-    private ScreenOrientation orientation = ScreenOrientation.VERTICAL;
-
-    private DisplayMetrics displayMetrics = new DisplayMetrics();
-
     /**
      * 屏幕宽度,高度
      */
     public int windowWidth;
     public int windowHeight;
-
+    /**
+     * 是否允许全屏
+     */
+    private boolean allowFullScreen = false;
+    /**
+     * 是否隐藏ActionBar
+     */
+    private boolean hiddenActionBar = false;
+    /**
+     * 点击退出是否启用框架的退出界面(默认弹出dialog确认)
+     */
+    private boolean backListener = true;
+    private boolean doubleClick2Exit = false;
+    /**
+     * 屏幕方向
+     */
+    private ScreenOrientation orientation = ScreenOrientation.VERTICAL;
+    private DisplayMetrics displayMetrics = new DisplayMetrics();
     /**
      * volley请求
      */
@@ -154,7 +141,11 @@ public abstract class BaseActivity extends CoreActivity {
      * @param openBackListener
      */
     public void setBackListener(boolean openBackListener) {
-        this.openBackListener = openBackListener;
+        this.backListener = openBackListener;
+    }
+
+    public void setDoubleClick2Exit(boolean doubleClick2exit) {
+        this.doubleClick2Exit = doubleClick2exit;
     }
 
     /**
@@ -230,9 +221,11 @@ public abstract class BaseActivity extends CoreActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (openBackListener && keyCode == KeyEvent.KEYCODE_BACK && AppManager.getInstance()
-                .getCount() < 2) {
-            UIHelper.create().getExitDialog(this);
+        if (backListener && keyCode == KeyEvent.KEYCODE_BACK && AppManager.getInstance().getCount
+                () < 2) {
+            if (doubleClick2Exit)
+                ExitDoubleClick.getInstance(this).doDoubleClick(1500, "再按一次返回键退出");
+            else UIHelper.create().getExitDialog(this);
         } else {
             AppManager.getInstance().finishActivity(this);
         }
@@ -261,6 +254,13 @@ public abstract class BaseActivity extends CoreActivity {
             requestManager = new RequestManager(tag);
         }
         return requestManager;
+    }
+
+    /**
+     * Activity显示方向
+     */
+    public static enum ScreenOrientation {
+        HORIZONTAL, VERTICAL, AUTO
     }
 
     /**<<<<<<<<<<<<<<<<<<<<<<<<<<<<<封装volley结束<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/

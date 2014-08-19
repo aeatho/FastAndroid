@@ -40,15 +40,13 @@ import java.util.Date;
  * Do one thing at a time, and do well!
  *
  * @Prject: FugaoApps
- * @Location: com.fugao.common.AppManager
+ * @Location: com.android.fastlibrary.AppManager
  * @Description: 应用程序异常类：用于捕获异常和提示错误信息
- * @author: 席强    xiqiang@fugao.com
+ * @author: loQua.Xee    loquaciouser@gmail.com
  * @date: 2014/7/27 15:22
  * @version: V1.0
  */
 public class AppException extends Exception implements UncaughtExceptionHandler {
-
-    private final static boolean Debug = false;//是否保存错误日志
 
     /** 定义异常类型 */
     public final static byte TYPE_NETWORK = 0x01;
@@ -59,7 +57,8 @@ public class AppException extends Exception implements UncaughtExceptionHandler 
     public final static byte TYPE_IO = 0x06;
     public final static byte TYPE_RUN = 0x07;
     public final static byte TYPE_JSON = 0x08;
-
+    /** 是否保存错误日志* */
+    private final static boolean Debug = false;
     private byte type;
     private int code;
 
@@ -77,6 +76,59 @@ public class AppException extends Exception implements UncaughtExceptionHandler 
         if (Debug) {
             this.saveErrorLog(excp);
         }
+    }
+
+    public static AppException http(int code) {
+        return new AppException(TYPE_HTTP_CODE, code, null);
+    }
+
+    public static AppException http(Exception e) {
+        return new AppException(TYPE_HTTP_ERROR, 0, e);
+    }
+
+    public static AppException socket(Exception e) {
+        return new AppException(TYPE_SOCKET, 0, e);
+    }
+
+    public static AppException io(Exception e) {
+        if (e instanceof UnknownHostException || e instanceof ConnectException) {
+            return new AppException(TYPE_NETWORK, 0, e);
+        } else if (e instanceof IOException) {
+            return new AppException(TYPE_IO, 0, e);
+        }
+        return run(e);
+    }
+
+    public static AppException xml(Exception e) {
+        return new AppException(TYPE_XML, 0, e);
+    }
+
+    public static AppException json(Exception e) {
+        return new AppException(TYPE_JSON, 0, e);
+    }
+
+    public static AppException network(Exception e) {
+        if (e instanceof UnknownHostException || e instanceof ConnectException) {
+            return new AppException(TYPE_NETWORK, 0, e);
+        } else if (e instanceof HttpException) {
+            return http(e);
+        } else if (e instanceof SocketException) {
+            return socket(e);
+        }
+        return http(e);
+    }
+
+    public static AppException run(Exception e) {
+        return new AppException(TYPE_RUN, 0, e);
+    }
+
+    /**
+     * 获取APP异常崩溃处理对象
+     *
+     * @return
+     */
+    public static AppException getAppExceptionHandler() {
+        return new AppException();
     }
 
     public int getCode() {
@@ -167,59 +219,6 @@ public class AppException extends Exception implements UncaughtExceptionHandler 
             if (fw != null) { try { fw.close(); } catch (IOException e) { }}
         }
 
-    }
-
-    public static AppException http(int code) {
-        return new AppException(TYPE_HTTP_CODE, code, null);
-    }
-
-    public static AppException http(Exception e) {
-        return new AppException(TYPE_HTTP_ERROR, 0, e);
-    }
-
-    public static AppException socket(Exception e) {
-        return new AppException(TYPE_SOCKET, 0, e);
-    }
-
-    public static AppException io(Exception e) {
-        if (e instanceof UnknownHostException || e instanceof ConnectException) {
-            return new AppException(TYPE_NETWORK, 0, e);
-        } else if (e instanceof IOException) {
-            return new AppException(TYPE_IO, 0, e);
-        }
-        return run(e);
-    }
-
-    public static AppException xml(Exception e) {
-        return new AppException(TYPE_XML, 0, e);
-    }
-
-    public static AppException json(Exception e) {
-        return new AppException(TYPE_JSON, 0, e);
-    }
-
-    public static AppException network(Exception e) {
-        if (e instanceof UnknownHostException || e instanceof ConnectException) {
-            return new AppException(TYPE_NETWORK, 0, e);
-        } else if (e instanceof HttpException) {
-            return http(e);
-        } else if (e instanceof SocketException) {
-            return socket(e);
-        }
-        return http(e);
-    }
-
-    public static AppException run(Exception e) {
-        return new AppException(TYPE_RUN, 0, e);
-    }
-
-    /**
-     * 获取APP异常崩溃处理对象
-     *
-     * @return
-     */
-    public static AppException getAppExceptionHandler() {
-        return new AppException();
     }
 
     @Override
