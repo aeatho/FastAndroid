@@ -24,6 +24,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.android.fastlibrary.util.AutoValueAdapterFactory;
+import com.android.fastlibrary.util.PreferenceHelper;
 import com.android.fastlibrary.util.StringUtils;
 import com.android.fastlibrary.volley.VolleyHelper;
 import com.google.gson.Gson;
@@ -41,21 +42,20 @@ import com.google.gson.GsonBuilder;
  */
 
 public abstract class BaseApplication extends Application {
-    private static final String TAG = "Fugao-BaseApplication";
-
     public static final int NETTYPE_WIFI = 0x01;
     public static final int NETTYPE_CMWAP = 0x02;
     public static final int NETTYPE_CMNET = 0x03;
-
+    private static final String TAG = "Fugao-BaseApplication";
+    public static Gson gson = new GsonBuilder().registerTypeAdapterFactory(new
+            AutoValueAdapterFactory()).create();
     private static BaseApplication instance;
-
-    public static Gson gson = new GsonBuilder().registerTypeAdapterFactory(new AutoValueAdapterFactory()).create();
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
         VolleyHelper.init(instance);
+        PreferenceHelper.init(instance);
         init();
     }
 

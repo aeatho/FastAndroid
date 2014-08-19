@@ -72,7 +72,6 @@ public abstract class FastWelcomeActivity extends BaseActivity implements View.O
     @Override
     protected void initData() {
         ArrayList<View> views = new ArrayList<View>();
-
         int[] images = getWelcomeImages();
 
         indicators = new ImageView[images.length];
@@ -89,7 +88,6 @@ public abstract class FastWelcomeActivity extends BaseActivity implements View.O
             }
             indicatorLayout.addView(indicators[i]);
         }
-
         PagerAdapter pagerAdapter = new WelcomePagerAdapter(views);
         viewPager.setAdapter(pagerAdapter); // 设置适配器
         viewPager.setOnPageChangeListener(this);
