@@ -18,6 +18,7 @@ package com.android.fastlibrary.ui.activity;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -101,6 +102,11 @@ public abstract class FastWelcomeActivity extends BaseActivity implements View.O
     @Override
     protected void initListener() {
         startButton.setOnClickListener(this);
+    }
+
+    @Override
+    public boolean onKeyDown(final int keyCode, final KeyEvent event) {
+        return true;
     }
 
     @Override
