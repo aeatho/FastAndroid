@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_1" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_2" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_3" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_4" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_5" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_6" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_7" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_8" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_9" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_10" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_11" />
+    <item android:duration="80" android:drawable="@drawable/pull_ref_pb_12" />
+</animation-list>

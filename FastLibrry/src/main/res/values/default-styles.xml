@@ -1,0 +1,91 @@
+<!--
+  ~ Copyright © 2014 上海复高计算机科技有限公司. All rights reserved.
+  -->
+
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="BaseTheme" parent="android:Theme.Holo.Light">
+
+    </style>
+
+    <!-- 系统默认主题DefualtTheme -->
+    <style name="DefualtTheme" parent="BaseTheme">
+        <item name="android:actionBarItemBackground">@drawable/acb_menu_selector</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="android:windowActionBarOverlay">false</item>
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+        <item name="android:actionOverflowButtonStyle">@style/ActionbarOverFlowStyle</item>
+        <item name="android:homeAsUpIndicator">@drawable/acb_back_holo_dark</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:actionBarWidgetTheme">@style/Theme.stylingactionbar.widget</item>
+        <item name="android:windowAnimationStyle">@style/HoloThemeAnimationActivity</item>
+        <item name="vpiTabPageIndicatorStyle">@style/DefaultTabPageIndicator</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@color/actionbar_item_theme_color_alpha</item>
+        <item name="android:titleTextStyle">@style/ActionbarTitleTextStyle</item>
+    </style>
+
+    <style name="ActionbarTitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/item_theme_color_black</item>
+        <item name="android:textSize">25dp</item>
+    </style>
+
+    <style name="ActionbarOverFlowStyle" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/acb_holo_ic_action_overflow_white</item>
+    </style>
+
+    <style name="PopupMenu" parent="@android:style/Widget.Holo.ListPopupWindow">
+        <item name="android:popupBackground">@color/actionbar_item_theme_color_alpha</item>
+    </style>
+
+    <style name="Theme.stylingactionbar.widget" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView</item>
+    </style>
+
+    <style name="DropDownListView" parent="@android:style/Widget.Holo.ListView.DropDown">
+        <item name="android:listSelector">@drawable/acb_menu_selector</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:divider">@color/actionbar_item_actionbar_listview_divider_color</item>
+    </style>
+
+    <style name="HoloThemeAnimationActivity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+    </style>
+
+    <!--主界面RadioButton样式-->
+    <style name="radioButton">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <!--导航条TabPageIndicator-->
+    <style name="DefaultTabPageIndicator" parent="Widget.TabPageIndicator">
+        <item name="android:background">@drawable/default_tab_indicator2</item>
+        <item name="android:textAppearance">@style/DefaultTabPageIndicator.Text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:dividerPadding">10dp</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">8dp</item>
+    </style>
+
+    <style name="DefaultTabPageIndicator.Text" parent="android:TextAppearance.Medium">
+        <item name="android:typeface">monospace</item>
+        <item name="android:textColor">@drawable/selector_tabtext</item>
+    </style>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FastAndroid.iml" filepath="$PROJECT_DIR$/FastAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FastExample/FastExample.iml" filepath="$PROJECT_DIR$/FastExample/FastExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FastLibrry/FastLibrry.iml" filepath="$PROJECT_DIR$/FastLibrry/FastLibrry.iml" />
+    </modules>
+  </component>
+</project>
+

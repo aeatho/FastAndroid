@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2014 上海复高计算机科技有限公司. All rights reserved.
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <corners
+        android:radius="8dp" />
+
+    <padding
+        android:bottom="8.0dip"
+        android:left="16.0dip"
+        android:right="16.0dip"
+        android:top="8.0dip" />
+
+    <solid android:color="@color/item_theme_color_black" />
+
+</shape>

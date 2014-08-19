@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2014 上海复高计算机科技有限公司. All rights reserved.
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:color="#A10000" />
+    <item android:state_pressed="true" android:color="#A10000" />
+    <item android:state_focused="true" android:color="#A10000" />
+    <item android:color="@android:color/black"/>
+</selector> 

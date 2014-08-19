@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2014 上海复高计算机科技有限公司. All rights reserved.
+  -->
+<resources>
+    <color name="grey_text">#ff848484</color>
+    <color name="item_theme_color_black">#272727</color>
+
+    <!--default theme-->
+    <color name="actionbar_item_pressed_color_transparent">#19000000</color>
+    <color name="windowBackground">#ffe6e6e6</color>
+    <color name="actionbar_item_theme_color_alpha">#ffffff</color>
+    <color name="actionbar_item_actionbar_listview_divider_color">#22ffffff</color>
+
+    <!--浏览器模板设置-->
+    <color name="brower_item_theme_color_alpha">#cc005092</color>
+</resources>

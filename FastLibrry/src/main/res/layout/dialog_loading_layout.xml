@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright © 2014 上海复高计算机科技有限公司. All rights reserved.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+              android:paddingLeft="16dp"
+              android:background="@drawable/toast_frame"
+              android:paddingRight="0dp"
+              android:paddingBottom="8dp"
+              android:gravity="center_vertical">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/holo_progressbar_circle"/>
+
+    <TextView
+        android:id="@+id/id_hint_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/loading"
+        android:textColor="#ffefefef"
+        android:textSize="16sp"
+        android:textStyle="normal"/>
+
+    <View
+        android:id="@+id/view"
+        android:background="#aae0e0e0"
+        android:layout_width="0.5dip"
+        android:layout_height="fill_parent"/>
+
+    <ImageButton
+        android:id="@+id/id_cross_dissmis"
+        android:background="@null"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="15.0dip"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/icon_cross_dissmis"
+        android:contentDescription="关闭"/>
+</LinearLayout>
