@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/FastExample" />
             <option value="$PROJECT_DIR$/FastLibrry" />
+            <option value="$PROJECT_DIR$/demo" />
           </set>
         </option>
       </GradleProjectSettings>

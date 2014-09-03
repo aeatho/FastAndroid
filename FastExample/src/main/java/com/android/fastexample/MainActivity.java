@@ -1,36 +1,42 @@
 package com.android.fastexample;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.android.fastlibrary.ui.activity.FastFragmentActivity;
+import com.android.fastlibrary.ui.fragment.BaseFragment;
 
 
-public class MainActivity extends Activity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+public class MainActivity extends FastFragmentActivity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+    public void changeFragment(final BaseFragment targetFragment) {
+        changeFragment(R.id.container, targetFragment);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+    protected void initData() {
+        super.initData();
+        changeFragment(new PlaceholderFragment());
+    }
+
+    @Override
+    protected void setRootView() {
+        setContentView(R.layout.activity_main2);
+    }
+
+    public static class PlaceholderFragment extends BaseFragment {
+
+        public PlaceholderFragment() {
         }
-        return super.onOptionsItemSelected(item);
+
+        @Override
+        protected View setRootView(final LayoutInflater inflater, final ViewGroup container,
+                                   final Bundle bundle) {
+            return inflater.inflate(R.layout.fragment_main, container, false);
+        }
     }
 }

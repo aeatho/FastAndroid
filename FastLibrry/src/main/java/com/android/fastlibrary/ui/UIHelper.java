@@ -117,7 +117,7 @@ public class UIHelper {
     public void getExitDialog(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("确定退出吗？");
-        builder.setCancelable(false);
+        builder.setCancelable(true);
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -186,7 +186,7 @@ public class UIHelper {
         return progressDialog;
     }
 
-    public static void showBrowser(String urlString){
+    public static void showBrowser(String urlString) {
         Activity currentActivity = AppManager.getInstance().getTopActivity();
         Intent intent = new Intent(currentActivity, FastBrowserActivity.class);
         intent.putExtra("url_string", urlString);
