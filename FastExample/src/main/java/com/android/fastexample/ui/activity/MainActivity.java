@@ -17,13 +17,16 @@
 package com.android.fastexample.ui.activity;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTabHost;
 
 import com.android.fastexample.R;
 import com.android.fastlibrary.ui.activity.BaseActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Do one thing at a time, and do well!
@@ -38,8 +41,9 @@ import butterknife.InjectView;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "Fugao-MainActivity";
-    @InjectView(R.id.viewPager)
-    ViewPager mViewPager;
+    private FragmentTabHost mTabHost;
+
+    private List<Fragment> fragments = new ArrayList<Fragment>();
 
     @Override
     protected void setRootView() {
@@ -49,7 +53,23 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
         ButterKnife.inject(this);
+    }
+
+    @Override
+    protected void initWidget() {
+        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+    }
+
+    @Override
+    protected void initData() {
+
+        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+
+//        mTabHost.addTab(mTabHost.newTabSpec("首页").setIndicator("Simple"), TabAFm.class, null);
+//        mTabHost.addTab(mTabHost.newTabSpec("分类").setIndicator("Contacts"), TabBFm.class, null);
+//        mTabHost.addTab(mTabHost.newTabSpec("排行").setIndicator("Custom"), TabCFm.class, null);
+//        mTabHost.addTab(mTabHost.newTabSpec("热门").setIndicator("Throttle"), TabDFm.class, null);
+//        mTabHost.addTab(mTabHost.newTabSpec("设置").setIndicator("Throttle"), TabEFm.class, null);
     }
 }

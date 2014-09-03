@@ -14,27 +14,21 @@
  * limitations under the License.
  */
 
-package com.android.fastexample.ui.activity;
+package com.android.fastexample.ui.fragment;
 
-import com.android.fastlibrary.ui.activity.FastLoadingActivity;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-/**
- * Do one thing at a time, and do well!
- *
- * @Prject: FastAndroid
- * @Location: com.android.fastexample.ui.activity.loadingActicity
- * @Description: TODO
- * @author: 席强    xiqiang@fugao.com
- * @date: 2014/9/3 10:43
- * @version: V1.0
- */
+import com.android.fastexample.R;
 
-public class loadingActicity extends FastLoadingActivity {
-    private static final String TAG = "Fugao-loadingActicity";
+public class FragmentPage5 extends Fragment {
 
     @Override
-    protected void onLoadingFinish() {
-        openActivity(MainTabActivity.class);
-        closeActivity();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_5, null);
     }
 }
