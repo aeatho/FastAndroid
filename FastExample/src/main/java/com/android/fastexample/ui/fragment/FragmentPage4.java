@@ -22,6 +22,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.fastexample.R;
+
 public class FragmentPage4 extends Fragment {
 
     @Override

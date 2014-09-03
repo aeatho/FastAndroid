@@ -21,6 +21,10 @@
             android:name=".ui.activity.MainActivity"
             android:label="Loading"
             />
+        <activity
+            android:name=".ui.activity.MainTabActivity"
+            android:label="Loading"
+            />
 
     </application>
 
