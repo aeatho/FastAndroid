@@ -12,13 +12,12 @@ import android.widget.TextView;
 import com.android.fastexample.R;
 import com.android.fastexample.ui.fragment.*;
 
+
 /**
  * @author yangyu
  *         功能描述：自定义TabHost
  */
 public class MainTabActivity extends FragmentActivity {
-    //定义FragmentTabHost对象
-    private FragmentTabHost mTabHost;
 
     //定义一个布局
     private LayoutInflater layoutInflater;
@@ -49,13 +48,10 @@ public class MainTabActivity extends FragmentActivity {
         layoutInflater = LayoutInflater.from(this);
 
         //实例化TabHost对象，得到TabHost
-        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        FragmentTabHost mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
-        //得到fragment的个数
-        int count = fragmentArray.length;
-
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < fragmentArray.length; i++) {
             //为每一个Tab按钮设置图标、文字和内容
             TabSpec tabSpec = mTabHost.newTabSpec(mTextviewArray[i]).setIndicator(getTabItemView
                     (i));

@@ -32,9 +32,15 @@ import com.android.fastlibrary.ui.activity.FastLoadingActivity;
 public class loadingActicity extends FastLoadingActivity {
     private static final String TAG = "Fugao-loadingActicity";
 
+
+    @Override
+    protected int getRootBackground() {
+        return super.getRootBackground();
+    }
+
     @Override
     protected void onLoadingFinish() {
-        openActivity(MainTabActivity.class);
+        openActivity(MainActivity.class);
         closeActivity();
     }
 }

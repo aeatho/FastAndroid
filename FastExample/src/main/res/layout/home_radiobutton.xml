@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright © 2014 上海复高计算机科技有限公司. All rights reserved.
+  -->
+
+<RadioButton
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/radioButton"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    >
+
+</RadioButton>
+

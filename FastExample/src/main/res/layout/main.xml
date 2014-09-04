@@ -16,11 +16,29 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+              android:layout_height="fill_parent"
+              android:background="@android:color/white">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:hint="sss"
-        android:layout_height="wrap_content"/>
+    <FrameLayout
+        android:id="@+id/tab_content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:background="#77557799"/>
+
+    <RadioGroup
+        android:id="@+id/tabs_rg"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bottom_bg"
+        android:gravity="center"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp">
+
+    </RadioGroup>
+
 </LinearLayout>
+
