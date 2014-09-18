@@ -16,12 +16,10 @@
 
 package com.android.fastlibrary.ui.activity.swipeback;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import com.android.fastlibrary.ui.activity.BaseActivity;
-import java.lang.reflect.Method;
 
 public abstract class SwipeBackActivity extends BaseActivity implements SwipeBackActivityBase {
   private SwipeBackActivityHelper mHelper;
@@ -70,16 +68,6 @@ public abstract class SwipeBackActivity extends BaseActivity implements SwipeBac
 
   @Override
   public void scrollToFinishActivity() {
-    convertActivityToTranslucent(this);
-    getSwipeBackLayout().scrollToFinishActivity();
-  }
-
-  private void convertActivityToTranslucent(Activity activity) {
-    try {
-      Method method = Activity.class.getDeclaredMethod("convertFromTranslucent");
-      method.setAccessible(true);
-      method.invoke(activity);
-    } catch (Throwable t) {
-    }
+    closeActivityWithAnim();
   }
 }
