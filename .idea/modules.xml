@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/FastAndroid.iml" filepath="$PROJECT_DIR$/FastAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/FastExample/FastExample.iml" filepath="$PROJECT_DIR$/FastExample/FastExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/FastLibrry/FastLibrry.iml" filepath="$PROJECT_DIR$/FastLibrry/FastLibrry.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
     </modules>
   </component>
 </project>

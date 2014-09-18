@@ -39,56 +39,66 @@ import butterknife.ButterKnife;
  */
 
 public abstract class CoreFragment extends Fragment {
-    private static final String TAG = "Fugao-CoreFragment";
+  private static final String TAG = "Fugao-CoreFragment";
 
-    /**
-     * 当前activity
-     */
-    public BaseActivity fatherActivity;
-    /**
-     * 当前视图
-     */
-    public View currentView;
+  /**
+   * 当前activity
+   */
+  public BaseActivity fatherActivity;
+  /**
+   * 当前视图
+   */
+  public View currentView;
 
-    @Override
-    public void onAttach(final Activity activity) {
-        super.onAttach(activity);
-        this.fatherActivity = (BaseActivity) getActivity();
+  @Override
+  public void onAttach(final Activity activity) {
+    super.onAttach(activity);
+    this.fatherActivity = (BaseActivity) getActivity();
+  }
+
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    if (currentView == null) {
+      currentView = setRootView(inflater, container, savedInstanceState);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        currentView = setRootView(inflater, container, savedInstanceState);
-        ButterKnife.inject(currentView);
-        initWidget(currentView);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                initAsyncData();
-            }
-        }).start();
-        initData();
-        return currentView;
+    ViewGroup parent = (ViewGroup) currentView.getParent();
+
+    if (parent != null) {
+      parent.removeView(currentView);
     }
 
-    protected abstract View setRootView(LayoutInflater inflater, ViewGroup container,
-                                        Bundle bundle);
+    ButterKnife.inject(currentView);
+    initWidget(currentView);
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        initAsyncData();
+      }
+    }).start();
+    initData();
+    return currentView;
+  }
 
-    /**
-     * 初始化布局控件
-     *
-     * @param view
-     */
-    protected void initWidget(final View view) {}
+  protected abstract View setRootView(LayoutInflater inflater, ViewGroup container,
+      Bundle bundle);
 
-    /**
-     * 异步初始化数据,不能直接更改主线程中控件
-     */
-    protected void initAsyncData() {}
+  /**
+   * 初始化布局控件
+   */
+  protected void initWidget(final View view) {
+  }
 
-    /**
-     * 同步初始化数据
-     */
-    protected void initData() {}
+  /**
+   * 异步初始化数据,不能直接更改主线程中控件
+   */
+  protected void initAsyncData() {
+  }
+
+  /**
+   * 同步初始化数据
+   */
+  protected void initData() {
+  }
 }
