@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FastAndroid.iml" filepath="$PROJECT_DIR$/FastAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FastExample/FastExample.iml" filepath="$PROJECT_DIR$/FastExample/FastExample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FastLibrry/FastLibrry.iml" filepath="$PROJECT_DIR$/FastLibrry/FastLibrry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastexample/fastexample.iml" filepath="$PROJECT_DIR$/fastexample/fastexample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastinfusion/fastinfusion.iml" filepath="$PROJECT_DIR$/fastinfusion/fastinfusion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastlibrry/fastlibrry.iml" filepath="$PROJECT_DIR$/fastlibrry/fastlibrry.iml" />
     </modules>
   </component>
 </project>

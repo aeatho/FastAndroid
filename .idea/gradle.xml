@@ -8,8 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/FastExample" />
-            <option value="$PROJECT_DIR$/FastLibrry" />
+            <option value="$PROJECT_DIR$/fastexample" />
+            <option value="$PROJECT_DIR$/fastinfusion" />
+            <option value="$PROJECT_DIR$/fastlibrry" />
           </set>
         </option>
       </GradleProjectSettings>

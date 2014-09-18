@@ -1,1 +1,1 @@
-include ':FastLibrry', ':FastExample'
+include ':fastinfusion', 'fastlibrry', 'fastexample'
