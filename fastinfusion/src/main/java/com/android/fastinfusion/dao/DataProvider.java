@@ -26,7 +26,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
-import com.android.fastinfusion.AppConfig;
+import com.android.fastinfusion.InfusionConfig;
 import com.android.fastlibrary.AppContext;
 
 /**
@@ -44,10 +44,10 @@ public class DataProvider extends ContentProvider {
 
   static {
     sUriMATCHER = new UriMatcher(UriMatcher.NO_MATCH);
-    sUriMATCHER.addURI(AppConfig.AUTHORITY, AppConfig.TABLE_BOTTLES, BOTTLES);
-    sUriMATCHER.addURI(AppConfig.AUTHORITY, AppConfig.TABLE_QUEUES, QUEUES);
-    sUriMATCHER.addURI(AppConfig.AUTHORITY, AppConfig.TABLE_QUEUES + "/#", BOTTLES_ITEM);
-    sUriMATCHER.addURI(AppConfig.AUTHORITY, AppConfig.TABLE_BOTTLES + "/#", QUEUES_ITEM);
+    sUriMATCHER.addURI(InfusionConfig.AUTHORITY, InfusionConfig.TABLE_BOTTLES, BOTTLES);
+    sUriMATCHER.addURI(InfusionConfig.AUTHORITY, InfusionConfig.TABLE_QUEUES, QUEUES);
+    sUriMATCHER.addURI(InfusionConfig.AUTHORITY, InfusionConfig.TABLE_QUEUES + "/#", BOTTLES_ITEM);
+    sUriMATCHER.addURI(InfusionConfig.AUTHORITY, InfusionConfig.TABLE_BOTTLES + "/#", QUEUES_ITEM);
   }
 
   private static DBHelper mDBHelper;
@@ -89,11 +89,11 @@ public class DataProvider extends ContentProvider {
     switch (sUriMATCHER.match(uri)) {
       case BOTTLES:
       case BOTTLES_ITEM:
-        table = AppConfig.TABLE_BOTTLES;
+        table = InfusionConfig.TABLE_BOTTLES;
         break;
       case QUEUES:
       case QUEUES_ITEM:
-        table = AppConfig.TABLE_QUEUES;
+        table = InfusionConfig.TABLE_QUEUES;
         break;
       default:
         throw new IllegalArgumentException("Unknown Uri" + uri);
@@ -105,9 +105,9 @@ public class DataProvider extends ContentProvider {
   public String getType(Uri uri) {
     switch (sUriMATCHER.match(uri)) {
       case BOTTLES:
-        return AppConfig.CONTENT_TYPE_BOTTLES;
+        return InfusionConfig.CONTENT_TYPE_BOTTLES;
       case QUEUES:
-        return AppConfig.CONTENT_TYPE_QUEUES;
+        return InfusionConfig.CONTENT_TYPE_QUEUES;
       default:
         throw new IllegalArgumentException("Unknown Uri" + uri);
     }

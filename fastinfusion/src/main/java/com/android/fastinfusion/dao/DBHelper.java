@@ -19,6 +19,7 @@ package com.android.fastinfusion.dao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.android.fastinfusion.InfusionConfig;
 import com.android.fastinfusion.dao.dbInfo.BottleDBInfo;
 
 /**
@@ -33,12 +34,8 @@ import com.android.fastinfusion.dao.dbInfo.BottleDBInfo;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-  private static final String DB_NAME = "infusion2.db";
-
-  private static final int VERSION = 1;
-
   public DBHelper(Context context) {
-    super(context, DB_NAME, null, VERSION);
+    super(context, InfusionConfig.DB_NAME, null, InfusionConfig.DB_VERSION);
   }
 
   @Override

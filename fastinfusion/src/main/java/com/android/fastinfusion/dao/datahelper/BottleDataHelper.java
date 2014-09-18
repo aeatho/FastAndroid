@@ -22,7 +22,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import com.android.fastinfusion.AppConfig;
+import com.android.fastinfusion.InfusionConfig;
 import com.android.fastinfusion.dao.DataProvider;
 import com.android.fastinfusion.dao.dbInfo.BaseBottleDBInfo;
 import com.android.fastinfusion.model.BottleInfoModel;
@@ -58,7 +58,7 @@ public class BottleDataHelper extends BaseDataHelper {
   }
 
   @Override protected Uri getContentUri() {
-    return AppConfig.CONTENT_URI_BOTTLES;
+    return InfusionConfig.CONTENT_URI_BOTTLES;
   }
 
   @Override protected String getTableName() {

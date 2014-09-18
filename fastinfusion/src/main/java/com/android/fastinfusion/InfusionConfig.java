@@ -23,7 +23,7 @@ import android.net.Uri;
  *
  * @Prject: FastAndroid
  * @Location: com.android.fastinfusion.AppConfig
- * @Description: TODO
+ * @Description: TODO 程序配置文件
  * @Author: LoQua.Xee    loquaciouser@gmail.com
  * @Create-date: 2014/9/18 18:32
  * @Modify-date: 修改日期
@@ -32,14 +32,21 @@ import android.net.Uri;
  * @version: V1.0
  */
 
-public class AppConfig {
+public class InfusionConfig {
 
+  /**
+   * 默认log标志
+   */
   public static final String TAG = "Fast-Infusion";
 
   /**
    * 数据库名称
    */
   public static final String DB_NAME = "infusion.db";
+  /**
+   * 数据库版本
+   */
+  public static final int DB_VERSION = 1;
   /**
    * 瓶贴表名
    */
