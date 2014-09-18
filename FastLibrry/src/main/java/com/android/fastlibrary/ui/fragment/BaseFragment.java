@@ -28,5 +28,4 @@ package com.android.fastlibrary.ui.fragment;
  */
 
 public abstract class BaseFragment extends CoreFragment {
-    private static final String TAG = "Fugao-BaseFragment";
 }

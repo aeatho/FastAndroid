@@ -28,79 +28,85 @@ import butterknife.ButterKnife;
  *
  * @Prject: FastAndroid
  * @Location: com.androd.fastibrary.ui.activity.BaseActivity
- * @Description: TODO 基本核心模板....不建议读者更改
+ * @Description: TODO Acitivity基本核心模板....不建议读者更改
  * @author: loQua.Xee    loquaciouser@gmail.com
  * @date: 2014/8/16 14:00
  * @version: V1.0
  */
 
 public abstract class CoreActivity extends FragmentActivity {
-    private static final String TAG = "Fugao-CoreActivity";
+  private static final String TAG = "Fugao-CoreActivity";
 
-    @Override
-    protected void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        /**
-         * 将当前activity加入到栈顶
-         */
-        AppManager.getInstance().addActivity(this);
-        setRootView();
-        ButterKnife.inject(this);
-        initialize();
-    }
-
-    private void initialize() {
-        initWidget();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                initAsyncData();
-            }
-        }).start();
-        initData();
-        registerBroadcast();
-        initListener();
-    }
-
+  @Override
+  protected void onCreate(final Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
     /**
-     * 初始化界面根布局
+     * 将当前activity加入到栈顶
      */
-    protected abstract void setRootView();
+    AppManager.getInstance().addActivity(this);
+    setRootView();
+    ButterKnife.inject(this);
+    initialize();
+  }
 
+  private void initialize() {
+    initWidget();
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        initAsyncData();
+      }
+    }).start();
+    initData();
+    registerBroadcast();
+    initListener();
+  }
+
+  /**
+   * 初始化界面根布局
+   */
+  protected abstract void setRootView();
+
+  /**
+   * 初始化布局控件
+   */
+  protected void initWidget() {
+  }
+
+  /**
+   * 异步初始化数据,不能直接更改主线程中控件
+   */
+  protected void initAsyncData() {
+  }
+
+  /**
+   * 同步初始化数据
+   */
+  protected void initData() {
+  }
+
+  /**
+   * 初始化时间监听
+   */
+  protected void initListener() {
+  }
+
+  /**
+   * 注册广播
+   */
+  protected void registerBroadcast() {
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
     /**
-     * 初始化布局控件
+     * 取消注册广播,并将当前ativity移除堆栈并销毁
      */
-    protected void initWidget() {}
+    unRegisterBroadcast();
+    AppManager.getInstance().finishActivity(this);
+  }
 
-    /**
-     * 异步初始化数据,不能直接更改主线程中控件
-     */
-    protected void initAsyncData() {}
-
-    /**
-     * 同步初始化数据
-     */
-    protected void initData() {}
-
-    /**
-     * 初始化时间监听
-     */
-    protected void initListener(){}
-
-    /**
-     * 注册广播
-     */
-    protected void registerBroadcast() {}
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        /**
-         * 取消注册广播,并将当前ativity移除堆栈并销毁
-         */
-        unRegisterBroadcast();
-        AppManager.getInstance().finishActivity(this);
-    }
-
-    protected void unRegisterBroadcast() {}
+  protected void unRegisterBroadcast() {
+  }
 }

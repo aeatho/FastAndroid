@@ -44,224 +44,213 @@ import com.android.fastlibrary.volley.RequestManager;
  */
 
 public abstract class BaseActivity extends CoreActivity {
-    private static final String TAG = "Fugao-BaseActivity";
-    /**
-     * 上下文
-     */
-    public Context context;
-    /**
-     * 屏幕宽度,高度
-     */
-    public int windowWidth;
-    public int windowHeight;
-    /**
-     * 是否允许全屏
-     */
-    private boolean allowFullScreen = false;
-    /**
-     * 是否隐藏ActionBar
-     */
-    private boolean hiddenActionBar = false;
-    /**
-     * 点击退出是否启用框架的退出界面(默认弹出dialog确认)
-     */
-    private boolean backListener = true;
-    private boolean doubleClick2Exit = false;
-    /**
-     * 屏幕方向
-     */
-    private ScreenOrientation orientation = ScreenOrientation.VERTICAL;
-    private DisplayMetrics displayMetrics = new DisplayMetrics();
-    /**
-     * volley请求
-     */
-    private RequestManager requestManager;
+  /**
+   * 上下文
+   */
+  public Context context;
+  /**
+   * 屏幕宽度,高度
+   */
+  public int windowWidth;
+  public int windowHeight;
+  /**
+   * 是否允许全屏
+   */
+  private boolean allowFullScreen = false;
+  /**
+   * 是否隐藏ActionBar
+   */
+  private boolean hiddenActionBar = false;
+  /**
+   * 点击退出是否启用框架的退出界面(默认弹出dialog确认)
+   */
+  private boolean backListener = true;
+  private boolean doubleClick2Exit = false;
+  /**
+   * 屏幕方向
+   */
+  private ScreenOrientation orientation = ScreenOrientation.VERTICAL;
+  private DisplayMetrics displayMetrics = new DisplayMetrics();
+  /**
+   * volley请求
+   */
+  private RequestManager requestManager;
 
-    @Override
-    protected void onCreate(final Bundle savedInstanceState) {
-        switch (orientation) {
-            case HORIZONTAL:
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                break;
-            case VERTICAL:
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                break;
-            case AUTO:
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-                break;
-        }
-        if (hiddenActionBar) {
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
-        } else {
-            ActionBar a = getActionBar();
-            if (a != null) a.show();
-        }
-        if (allowFullScreen) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        windowWidth = displayMetrics.widthPixels;
-        windowHeight = displayMetrics.heightPixels;
-
-        context = this;
-        super.onCreate(savedInstanceState);
+  @Override
+  protected void onCreate(final Bundle savedInstanceState) {
+    switch (orientation) {
+      case HORIZONTAL:
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        break;
+      case VERTICAL:
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        break;
+      case AUTO:
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+        break;
     }
+    if (hiddenActionBar) {
+      requestWindowFeature(Window.FEATURE_NO_TITLE);
+    } else {
+      ActionBar a = getActionBar();
+      if (a != null) a.show();
+    }
+    if (allowFullScreen) {
+      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+          WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+    getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+    windowWidth = displayMetrics.widthPixels;
+    windowHeight = displayMetrics.heightPixels;
 
+    context = this;
+    super.onCreate(savedInstanceState);
+  }
+
+  /**
+   * 是否全屏显示本Activity，全屏后将隐藏状态栏，默认不全屏
+   *
+   * @param allowFullScreen 是否全屏
+   */
+  public void setAllowFullScreen(boolean allowFullScreen) {
+    this.allowFullScreen = allowFullScreen;
+  }
+
+  /**
+   * 是否隐藏ActionBar，默认隐藏
+   *
+   * @param hiddenActionBar 是否隐藏ActionBar
+   */
+  public void setHiddenActionBar(boolean hiddenActionBar) {
+    this.hiddenActionBar = hiddenActionBar;
+  }
+
+  /**
+   * 修改屏幕显示方向，默认竖屏锁定
+   *
+   * @param orientation 屏幕方向
+   */
+  public void setScreenOrientation(ScreenOrientation orientation) {
+    this.orientation = orientation;
+  }
+
+  /**
+   * 是否启用返回键监听，若启用，则在显示最后一个Activity时将弹出退出对话框。默认启用（若修改必须在构造方法中调用）
+   */
+  public void setBackListener(boolean openBackListener) {
+    this.backListener = openBackListener;
+  }
+
+  public void setDoubleClick2Exit(boolean doubleClick2exit) {
+    this.doubleClick2Exit = doubleClick2exit;
+  }
+
+  /**
+   * 含有Bundle通过Class跳转界面
+   */
+  public void openActivity(Class<?> cls, Bundle bundle) {
+    Intent intent = new Intent(this, cls);
+    if (bundle != null) {
+      intent.putExtras(bundle);
+    }
+    startActivity(intent);
     /**
-     * 是否全屏显示本Activity，全屏后将隐藏状态栏，默认不全屏
-     *
-     * @param allowFullScreen 是否全屏
+     * 跳转动画,从左进如
      */
-    public void setAllowFullScreen(boolean allowFullScreen) {
-        this.allowFullScreen = allowFullScreen;
-    }
+    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+  }
 
+  /**
+   * 通过Class跳转界面
+   */
+  public void openActivity(Class<?> cls) {
+    openActivity(cls, null);
+  }
+
+  /**
+   * 含有Bundle通过Action跳转界面
+   */
+  public void openActivity(String action, Bundle bundle) {
+    Intent intent = new Intent(action);
+    if (bundle != null) {
+      intent.putExtras(bundle);
+    }
+    startActivity(intent);
     /**
-     * 是否隐藏ActionBar，默认隐藏
-     *
-     * @param hiddenActionBar 是否隐藏ActionBar
+     * 跳转动画,从左进如
      */
-    public void setHiddenActionBar(boolean hiddenActionBar) {
-        this.hiddenActionBar = hiddenActionBar;
+    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+  }
+
+  /**
+   * 通过Action跳转界面
+   */
+  public void openActivity(String action) {
+    openActivity(action, null);
+  }
+
+  /**
+   * 销毁,附加动画(销毁的时候需要手动立即销毁堆栈中的activity)
+   */
+  public void closeActivityWithAnim() {
+    //        super.finish();
+    AppManager.getInstance().finishActivity(this);
+    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+  }
+
+  /**
+   * 销毁,不附加动画
+   */
+  public void closeActivity() {
+    //        super.finish();
+    AppManager.getInstance().finishActivity(this);
+  }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if (backListener && keyCode == KeyEvent.KEYCODE_BACK && AppManager.getInstance().getCount
+        () < 2) {
+      if (doubleClick2Exit) {
+        ExitDoubleClick.getInstance(this).doDoubleClick(1500, "再按一次返回键退出");
+      } else {
+        UIHelper.create().getExitDialog(this);
+      }
+    } else {
+      AppManager.getInstance().finishActivity(this);
     }
+    return super.onKeyDown(keyCode, event);
+  }
 
-    /**
-     * 修改屏幕显示方向，默认竖屏锁定
-     *
-     * @param orientation 屏幕方向
-     */
-    public void setScreenOrientation(ScreenOrientation orientation) {
-        this.orientation = orientation;
+  /** >>>>>>>>>>>>>>>>>>>>>>>>>>>>封装volley开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>* */
+
+  public RequestManager volley() {
+    return initRequestManager();
+  }
+
+  public RequestManager volley(String tag) {
+    return initRequestManager(tag);
+  }
+
+  private RequestManager initRequestManager() {
+    if (requestManager == null) {
+      requestManager = new RequestManager();
     }
+    return requestManager;
+  }
 
-    /**
-     * 是否启用返回键监听，若启用，则在显示最后一个Activity时将弹出退出对话框。默认启用（若修改必须在构造方法中调用）
-     *
-     * @param openBackListener
-     */
-    public void setBackListener(boolean openBackListener) {
-        this.backListener = openBackListener;
+  private RequestManager initRequestManager(String tag) {
+    if (requestManager == null) {
+      requestManager = new RequestManager(tag);
     }
+    return requestManager;
+  }
 
-    public void setDoubleClick2Exit(boolean doubleClick2exit) {
-        this.doubleClick2Exit = doubleClick2exit;
-    }
+  /**
+   * Activity显示方向
+   */
+  public static enum ScreenOrientation {
+    HORIZONTAL, VERTICAL, AUTO
+  }
 
-    /**
-     * 含有Bundle通过Class跳转界面
-     *
-     * @param cls
-     * @param bundle
-     */
-    public void openActivity(Class<?> cls, Bundle bundle) {
-        Intent intent = new Intent(this, cls);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivity(intent);
-        /**
-         * 跳转动画,从左进如
-         */
-        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-    }
-
-    /**
-     * 通过Class跳转界面
-     *
-     * @param cls
-     */
-    public void openActivity(Class<?> cls) {
-        openActivity(cls, null);
-    }
-
-    /**
-     * 含有Bundle通过Action跳转界面
-     *
-     * @param action
-     * @param bundle
-     */
-    public void openActivity(String action, Bundle bundle) {
-        Intent intent = new Intent(action);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivity(intent);
-        /**
-         * 跳转动画,从左进如
-         */
-        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-    }
-
-    /**
-     * 通过Action跳转界面
-     *
-     * @param action
-     */
-    public void openActivity(String action) {
-        openActivity(action, null);
-    }
-
-    /**
-     * 销毁,附加动画(销毁的时候需要手动立即销毁堆栈中的activity)
-     */
-    public void closeActivityWithAnim() {
-//        super.finish();
-        AppManager.getInstance().finishActivity(this);
-        overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
-    }
-
-    /**
-     * 销毁,不附加动画
-     */
-    public void closeActivity() {
-//        super.finish();
-        AppManager.getInstance().finishActivity(this);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (backListener && keyCode == KeyEvent.KEYCODE_BACK && AppManager.getInstance().getCount
-                () < 2) {
-            if (doubleClick2Exit)
-                ExitDoubleClick.getInstance(this).doDoubleClick(1500, "再按一次返回键退出");
-            else UIHelper.create().getExitDialog(this);
-        } else {
-            AppManager.getInstance().finishActivity(this);
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    /** >>>>>>>>>>>>>>>>>>>>>>>>>>>>封装volley开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>* */
-
-    public RequestManager volley() {
-        return initRequestManager();
-    }
-
-    public RequestManager volley(String tag) {
-        return initRequestManager(tag);
-    }
-
-    private RequestManager initRequestManager() {
-        if (requestManager == null) {
-            requestManager = new RequestManager();
-        }
-        return requestManager;
-    }
-
-    private RequestManager initRequestManager(String tag) {
-        if (requestManager == null) {
-            requestManager = new RequestManager(tag);
-        }
-        return requestManager;
-    }
-
-    /**
-     * Activity显示方向
-     */
-    public static enum ScreenOrientation {
-        HORIZONTAL, VERTICAL, AUTO
-    }
-
-    /**<<<<<<<<<<<<<<<<<<<<<<<<<<<<<封装volley结束<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/
+  /**<<<<<<<<<<<<<<<<<<<<<<<<<<<<<封装volley结束<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/
 }

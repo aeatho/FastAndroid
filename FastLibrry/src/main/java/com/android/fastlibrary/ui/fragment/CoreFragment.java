@@ -22,9 +22,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.android.fastlibrary.ui.activity.BaseActivity;
-
 import butterknife.ButterKnife;
 
 /**
@@ -32,28 +29,29 @@ import butterknife.ButterKnife;
  *
  * @Prject: FastAndroid
  * @Location: com.android.fastlibrary.ui.fragment.CoreFragment
- * @Description: TODO
+ * @Description: TODO Fragment基本核心模板....不建议读者更改
  * @author: loQua.Xee    loquaciouser@gmail.com
  * @date: 2014/8/16 15:54
- * @version: V1.0
+ * @Modify-date: 2014-9-18 13:08:22
+ * @Modify-description: TODO 实现Fragment状态保存,切换Fragment时避免重复加载UI
+ * @Modify-author: loQua.Xee
+ * @version: V2.0
  */
 
 public abstract class CoreFragment extends Fragment {
-  private static final String TAG = "Fugao-CoreFragment";
-
   /**
    * 当前activity
    */
-  public BaseActivity fatherActivity;
+  public Activity fatherActivity;
   /**
-   * 当前视图
+   * 当前视图并启到缓存Fragment的作用
    */
   public View currentView;
 
   @Override
   public void onAttach(final Activity activity) {
     super.onAttach(activity);
-    this.fatherActivity = (BaseActivity) getActivity();
+    this.fatherActivity = getActivity();
   }
 
   @Override
@@ -61,23 +59,24 @@ public abstract class CoreFragment extends Fragment {
       Bundle savedInstanceState) {
     if (currentView == null) {
       currentView = setRootView(inflater, container, savedInstanceState);
+      ButterKnife.inject(currentView);
+      initWidget(currentView);
+      new Thread(new Runnable() {
+        @Override
+        public void run() {
+          initAsyncData();
+        }
+      }).start();
+      initData();
     }
-
+    /**
+     * 缓存的rootView需要判断是否已经被加过parent，如果有parent需要从parent删除此view，
+     * 要不然会发生这个rootview已经有parent的错误。
+     */
     ViewGroup parent = (ViewGroup) currentView.getParent();
-
     if (parent != null) {
       parent.removeView(currentView);
     }
-
-    ButterKnife.inject(currentView);
-    initWidget(currentView);
-    new Thread(new Runnable() {
-      @Override
-      public void run() {
-        initAsyncData();
-      }
-    }).start();
-    initData();
     return currentView;
   }
 
