@@ -37,17 +37,17 @@ public class DataProvider extends ContentProvider {
   public static final Object obj = new Object();
 
   private static final int BOTTLES = 0;
-  private static final int BOTTLES_ITEM = 3;
   private static final int QUEUES = 1;
-  private static final int QUEUES_ITEM = 4;
+  //private static final int BOTTLES_ITEM = 2;
+  //private static final int QUEUES_ITEM = 3;
   private static final UriMatcher sUriMATCHER;
 
   static {
     sUriMATCHER = new UriMatcher(UriMatcher.NO_MATCH);
     sUriMATCHER.addURI(InfusionConfig.AUTHORITY, InfusionConfig.TABLE_BOTTLES, BOTTLES);
     sUriMATCHER.addURI(InfusionConfig.AUTHORITY, InfusionConfig.TABLE_QUEUES, QUEUES);
-    sUriMATCHER.addURI(InfusionConfig.AUTHORITY, InfusionConfig.TABLE_QUEUES + "/#", BOTTLES_ITEM);
-    sUriMATCHER.addURI(InfusionConfig.AUTHORITY, InfusionConfig.TABLE_BOTTLES + "/#", QUEUES_ITEM);
+    //sUriMATCHER.addURI(InfusionConfig.AUTHORITY, InfusionConfig.TABLE_QUEUES + "/#", BOTTLES_ITEM);
+    //sUriMATCHER.addURI(InfusionConfig.AUTHORITY, InfusionConfig.TABLE_BOTTLES + "/#", QUEUES_ITEM);
   }
 
   private static DBHelper mDBHelper;
@@ -88,11 +88,11 @@ public class DataProvider extends ContentProvider {
     String table;
     switch (sUriMATCHER.match(uri)) {
       case BOTTLES:
-      case BOTTLES_ITEM:
+        //case BOTTLES_ITEM:
         table = InfusionConfig.TABLE_BOTTLES;
         break;
       case QUEUES:
-      case QUEUES_ITEM:
+        //case QUEUES_ITEM:
         table = InfusionConfig.TABLE_QUEUES;
         break;
       default:

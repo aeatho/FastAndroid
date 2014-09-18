@@ -16,7 +16,6 @@
 
 package com.android.fastinfusion.dao.dbInfo;
 
-import android.net.Uri;
 import android.provider.BaseColumns;
 
 /**
@@ -83,12 +82,4 @@ public abstract class BaseBottleDBInfo implements BaseColumns {
   public static final String DrugDetails = "DrugDetails";//药品明细,为jsonarray
   public static final String PeopleInfo = "PeopleInfo";//病人信息,为jsonobject
   public static final String AboutPatrols = "AboutPatrols";//巡视信息,为jsonobject
-
-  public static final String TABLE_NAME = "bottls";
-  public static final String AUTOHORITY = "com.fugao.infusion";
-  public static final int ITEM = 1;
-  public static final int ITEM_ID = 2;
-  public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.fugao.infusion";
-  public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.fugao.infusion";
-  public static final Uri CONTENT_URI = Uri.parse("content://" + AUTOHORITY + "/" + TABLE_NAME);
 }
