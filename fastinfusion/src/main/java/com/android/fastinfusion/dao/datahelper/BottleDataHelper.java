@@ -148,6 +148,10 @@ public class BottleDataHelper extends BaseDataHelper {
     return delete(null, null);
   }
 
+  public int clear() {
+    return delete(null, null);
+  }
+
   /**
    * 构建contentvalues
    */
@@ -158,72 +162,44 @@ public class BottleDataHelper extends BaseDataHelper {
     contentValues.put("InfusionNo", infos.InfusionNo);
     contentValues.put("InvoicingId", infos.InvoicingId);
     contentValues.put("PrescriptionId", infos.PrescriptionId);
-    contentValues.put("DoctorId",
-        StringUtils.getString(infos.DoctorId));
-    contentValues.put("DoctorCore",
-        StringUtils.getString(infos.DoctorCore));
-    contentValues.put("DoctorName",
-        StringUtils.getString(infos.DoctorName));
-    contentValues.put("DiagnoseCore",
-        StringUtils.getString(infos.DiagnoseCore));
-    contentValues.put("DiagnoseName",
-        StringUtils.getString(infos.DiagnoseName));
-    contentValues.put("PrescribeDate",
-        StringUtils.getString(infos.PrescribeDate));
-    contentValues.put("PrescribeTime",
-        StringUtils.getString(infos.PrescribeTime));
+    contentValues.put("DoctorId", StringUtils.getString(infos.DoctorId));
+    contentValues.put("DoctorCore", StringUtils.getString(infos.DoctorCore));
+    contentValues.put("DoctorName", StringUtils.getString(infos.DoctorName));
+    contentValues.put("DiagnoseCore", StringUtils.getString(infos.DiagnoseCore));
+    contentValues.put("DiagnoseName", StringUtils.getString(infos.DiagnoseName));
+    contentValues.put("PrescribeDate", StringUtils.getString(infos.PrescribeDate));
+    contentValues.put("PrescribeTime", StringUtils.getString(infos.PrescribeTime));
     contentValues.put("GroupId", infos.GroupId);
     contentValues.put("BottleStatus", infos.BottleStatus);
-    contentValues.put("Way",
-        StringUtils.getString(infos.Way));
-    contentValues.put("Frequency",
-        StringUtils.getString(infos.Frequency));
+    contentValues.put("Way", StringUtils.getString(infos.Way));
+    contentValues.put("Frequency", StringUtils.getString(infos.Frequency));
     contentValues.put("TransfusionBulk", infos.TransfusionBulk);
     contentValues.put("TransfusionSpeed", infos.TransfusionSpeed);
     contentValues.put("ExpectTime", infos.ExpectTime);
-    contentValues.put("SubscribeDate",
-        StringUtils.getString(infos.SubscribeDate));
-    contentValues.put("SubscribeTime",
-        StringUtils.getString(infos.SubscribeTime));
-    contentValues.put("RegistrationDate",
-        StringUtils.getString(infos.RegistrationDate));
-    contentValues.put("RegistrationTime",
-        StringUtils.getString(infos.RegistrationTime));
+    contentValues.put("SubscribeDate", StringUtils.getString(infos.SubscribeDate));
+    contentValues.put("SubscribeTime", StringUtils.getString(infos.SubscribeTime));
+    contentValues.put("RegistrationDate", StringUtils.getString(infos.RegistrationDate));
+    contentValues.put("RegistrationTime", StringUtils.getString(infos.RegistrationTime));
     contentValues.put("RegistrationId", infos.RegistrationId);
-    contentValues.put("RegistrationCore",
-        StringUtils.getString(infos.RegistrationCore));
-    contentValues.put("PillDate",
-        StringUtils.getString(infos.PillDate));
-    contentValues.put("PillTime",
-        StringUtils.getString(infos.PillTime));
+    contentValues.put("RegistrationCore", StringUtils.getString(infos.RegistrationCore));
+    contentValues.put("PillDate", StringUtils.getString(infos.PillDate));
+    contentValues.put("PillTime", StringUtils.getString(infos.PillTime));
     contentValues.put("PillId", infos.PillId);
-    contentValues.put("PillCore",
-        StringUtils.getString(infos.PillCore));
-    contentValues.put("LiquorDate",
-        StringUtils.getString(infos.LiquorDate));
-    contentValues.put("LiquorTime",
-        StringUtils.getString(infos.LiquorTime));
+    contentValues.put("PillCore", StringUtils.getString(infos.PillCore));
+    contentValues.put("LiquorDate", StringUtils.getString(infos.LiquorDate));
+    contentValues.put("LiquorTime", StringUtils.getString(infos.LiquorTime));
     contentValues.put("LiquorId", infos.LiquorId);
-    contentValues.put("LiquorCore",
-        StringUtils.getString(infos.LiquorCore));
-    contentValues.put("InfusionDate",
-        StringUtils.getString(infos.InfusionDate));
-    contentValues.put("InfusionTime",
-        StringUtils.getString(infos.InfusionTime));
+    contentValues.put("LiquorCore", StringUtils.getString(infos.LiquorCore));
+    contentValues.put("InfusionDate", StringUtils.getString(infos.InfusionDate));
+    contentValues.put("InfusionTime", StringUtils.getString(infos.InfusionTime));
     contentValues.put("InfusionPeopleId", infos.InfusionPeopleId);
-    contentValues.put("InfusionCore",
-        StringUtils.getString(infos.InfusionCore));
-    contentValues.put("EndDate",
-        StringUtils.getString(infos.EndDate));
-    contentValues.put("EndTime",
-        StringUtils.getString(infos.EndTime));
+    contentValues.put("InfusionCore", StringUtils.getString(infos.InfusionCore));
+    contentValues.put("EndDate", StringUtils.getString(infos.EndDate));
+    contentValues.put("EndTime", StringUtils.getString(infos.EndTime));
     contentValues.put("EndId", infos.EndId);
-    contentValues.put("EndCore",
-        StringUtils.getString(infos.EndCore));
-    contentValues.put("Remark",
-        StringUtils.getString(infos.Remark));
-    contentValues.put("SeatNo",
-        StringUtils.getString(infos.SeatNo));
+    contentValues.put("EndCore", StringUtils.getString(infos.EndCore));
+    contentValues.put("Remark", StringUtils.getString(infos.Remark));
+    contentValues.put("SeatNo", StringUtils.getString(infos.SeatNo));
     contentValues.put("DrugDetails",
         StringUtils.getString(JacksonHelper.model2String(infos.DrugDetails)));
     contentValues.put("PeopleInfo",
@@ -241,102 +217,62 @@ public class BottleDataHelper extends BaseDataHelper {
     BottleInfoModel info = null;
     if (cursor.moveToFirst()) {
       info = new BottleInfoModel();
-      info.BottleId = cursor.getInt(cursor
-          .getColumnIndex("BottleId"));
-      info.InfusionId = cursor.getInt(cursor
-          .getColumnIndex("InfusionId"));
-      info.InfusionNo = cursor.getInt(cursor
-          .getColumnIndex("InfusionNo"));
-      info.InvoicingId = cursor.getInt(cursor
-          .getColumnIndex("InvoicingId"));
-      info.PrescriptionId = cursor.getInt(cursor
-          .getColumnIndex("PrescriptionId"));
-      info.DoctorId = cursor.getString(cursor
-          .getColumnIndex("DoctorId"));
-      info.DoctorCore = cursor.getString(cursor
-          .getColumnIndex("DoctorCore"));
-      info.DoctorName = cursor.getString(cursor
-          .getColumnIndex("DoctorName"));
-      info.DiagnoseCore = cursor.getString(cursor
-          .getColumnIndex("DiagnoseCore"));
-      info.DiagnoseName = cursor.getString(cursor
-          .getColumnIndex("DiagnoseName"));
-      info.PrescribeDate = cursor.getString(cursor
-          .getColumnIndex("PrescribeDate"));
-      info.PrescribeTime = cursor.getString(cursor
-          .getColumnIndex("PrescribeTime"));
-      info.GroupId = cursor.getInt(cursor
-          .getColumnIndex("GroupId"));
-      info.BottleStatus = cursor.getInt(cursor
-          .getColumnIndex("BottleStatus"));
-      info.Way = cursor.getString(cursor
-          .getColumnIndex("Way"));
-      info.Frequency = cursor.getString(cursor
-          .getColumnIndex("Frequency"));
-      info.TransfusionBulk = cursor.getInt(cursor
-          .getColumnIndex("TransfusionBulk"));
-      info.TransfusionSpeed = cursor.getInt(cursor
-          .getColumnIndex("TransfusionSpeed"));
-      info.ExpectTime = cursor.getInt(cursor
-          .getColumnIndex("ExpectTime"));
-      info.SubscribeDate = cursor.getString(cursor
-          .getColumnIndex("SubscribeDate"));
-      info.SubscribeTime = cursor.getString(cursor
-          .getColumnIndex("SubscribeTime"));
-      info.RegistrationDate = cursor.getString(cursor
-          .getColumnIndex("RegistrationDate"));
-      info.RegistrationTime = cursor.getString(cursor
-          .getColumnIndex("RegistrationTime"));
-      info.RegistrationId = cursor.getInt(cursor
-          .getColumnIndex("RegistrationId"));
-      info.RegistrationCore = cursor.getString(cursor
-          .getColumnIndex("RegistrationCore"));
-      info.PillDate = cursor.getString(cursor
-          .getColumnIndex("PillDate"));
-      info.PillTime = cursor.getString(cursor
-          .getColumnIndex("PillTime"));
-      info.PillId = cursor.getInt(cursor
-          .getColumnIndex("PillId"));
-      info.PillCore = cursor.getString(cursor
-          .getColumnIndex("PillCore"));
-      info.LiquorDate = cursor.getString(cursor
-          .getColumnIndex("LiquorDate"));
-      info.LiquorTime = cursor.getString(cursor
-          .getColumnIndex("LiquorTime"));
-      info.LiquorId = cursor.getInt(cursor
-          .getColumnIndex("LiquorId"));
-      info.LiquorCore = cursor.getString(cursor
-          .getColumnIndex("LiquorCore"));
-      info.InfusionDate = cursor.getString(cursor
-          .getColumnIndex("InfusionDate"));
-      info.InfusionTime = cursor.getString(cursor
-          .getColumnIndex("InfusionTime"));
-      info.InfusionPeopleId = cursor.getInt(cursor
-          .getColumnIndex("InfusionPeopleId"));
-      info.InfusionCore = cursor.getString(cursor
-          .getColumnIndex("InfusionCore"));
-      info.EndDate = cursor.getString(cursor
-          .getColumnIndex("EndDate"));
-      info.EndTime = cursor.getString(cursor
-          .getColumnIndex("EndTime"));
-      info.EndId = cursor.getInt(cursor
-          .getColumnIndex("EndId"));
-      info.EndCore = cursor.getString(cursor
-          .getColumnIndex("EndCore"));
-      info.Remark = cursor.getString(cursor
-          .getColumnIndex("Remark"));
-      info.SeatNo = cursor.getString(cursor
-          .getColumnIndex("SeatNo"));
+      info.BottleId = cursor.getInt(cursor.getColumnIndex("BottleId"));
+      info.InfusionId = cursor.getInt(cursor.getColumnIndex("InfusionId"));
+      info.InfusionNo = cursor.getInt(cursor.getColumnIndex("InfusionNo"));
+      info.InvoicingId = cursor.getInt(cursor.getColumnIndex("InvoicingId"));
+      info.PrescriptionId = cursor.getInt(cursor.getColumnIndex("PrescriptionId"));
+      info.DoctorId = cursor.getString(cursor.getColumnIndex("DoctorId"));
+      info.DoctorCore = cursor.getString(cursor.getColumnIndex("DoctorCore"));
+      info.DoctorName = cursor.getString(cursor.getColumnIndex("DoctorName"));
+      info.DiagnoseCore = cursor.getString(cursor.getColumnIndex("DiagnoseCore"));
+      info.DiagnoseName = cursor.getString(cursor.getColumnIndex("DiagnoseName"));
+      info.PrescribeDate = cursor.getString(cursor.getColumnIndex("PrescribeDate"));
+      info.PrescribeTime = cursor.getString(cursor.getColumnIndex("PrescribeTime"));
+      info.GroupId = cursor.getInt(cursor.getColumnIndex("GroupId"));
+      info.BottleStatus = cursor.getInt(cursor.getColumnIndex("BottleStatus"));
+      info.Way = cursor.getString(cursor.getColumnIndex("Way"));
+      info.Frequency = cursor.getString(cursor.getColumnIndex("Frequency"));
+      info.TransfusionBulk = cursor.getInt(cursor.getColumnIndex("TransfusionBulk"));
+      info.TransfusionSpeed = cursor.getInt(cursor.getColumnIndex("TransfusionSpeed"));
+      info.ExpectTime = cursor.getInt(cursor.getColumnIndex("ExpectTime"));
+      info.SubscribeDate = cursor.getString(cursor.getColumnIndex("SubscribeDate"));
+      info.SubscribeTime = cursor.getString(cursor.getColumnIndex("SubscribeTime"));
+      info.RegistrationDate = cursor.getString(cursor.getColumnIndex("RegistrationDate"));
+      info.RegistrationTime = cursor.getString(cursor.getColumnIndex("RegistrationTime"));
+      info.RegistrationId = cursor.getInt(cursor.getColumnIndex("RegistrationId"));
+      info.RegistrationCore = cursor.getString(cursor.getColumnIndex("RegistrationCore"));
+      info.PillDate = cursor.getString(cursor.getColumnIndex("PillDate"));
+      info.PillTime = cursor.getString(cursor.getColumnIndex("PillTime"));
+      info.PillId = cursor.getInt(cursor.getColumnIndex("PillId"));
+      info.PillCore = cursor.getString(cursor.getColumnIndex("PillCore"));
+      info.LiquorDate = cursor.getString(cursor.getColumnIndex("LiquorDate"));
+      info.LiquorTime = cursor.getString(cursor.getColumnIndex("LiquorTime"));
+      info.LiquorId = cursor.getInt(cursor.getColumnIndex("LiquorId"));
+      info.LiquorCore = cursor.getString(cursor.getColumnIndex("LiquorCore"));
+      info.InfusionDate = cursor.getString(cursor.getColumnIndex("InfusionDate"));
+      info.InfusionTime = cursor.getString(cursor.getColumnIndex("InfusionTime"));
+      info.InfusionPeopleId = cursor.getInt(cursor.getColumnIndex("InfusionPeopleId"));
+      info.InfusionCore = cursor.getString(cursor.getColumnIndex("InfusionCore"));
+      info.EndDate = cursor.getString(cursor.getColumnIndex("EndDate"));
+      info.EndTime = cursor.getString(cursor.getColumnIndex("EndTime"));
+      info.EndId = cursor.getInt(cursor.getColumnIndex("EndId"));
+      info.EndCore = cursor.getString(cursor.getColumnIndex("EndCore"));
+      info.Remark = cursor.getString(cursor.getColumnIndex("Remark"));
+      info.SeatNo = cursor.getString(cursor.getColumnIndex("SeatNo"));
 
-      info.DrugDetails = JacksonHelper.getObjects(cursor.getString(cursor
-          .getColumnIndex("DrugDetails")), new TypeReference<List<DrugDetailModel>>() {
-      });
-      info.PeopleInfo = JacksonHelper.getObject(cursor.getString(cursor
-          .getColumnIndex("PeopleInfo")), new TypeReference<PeopleInfoModel>() {
-      });
-      info.AboutPatrols = JacksonHelper.getObject(cursor.getString(cursor
-          .getColumnIndex("AboutPatrols")), new TypeReference<List<PatrolDetailModel>>() {
-      });
+      info.DrugDetails =
+          JacksonHelper.getObjects(cursor.getString(cursor.getColumnIndex("DrugDetails")),
+              new TypeReference<List<DrugDetailModel>>() {
+              });
+      info.PeopleInfo =
+          JacksonHelper.getObject(cursor.getString(cursor.getColumnIndex("PeopleInfo")),
+              new TypeReference<PeopleInfoModel>() {
+              });
+      info.AboutPatrols =
+          JacksonHelper.getObject(cursor.getString(cursor.getColumnIndex("AboutPatrols")),
+              new TypeReference<List<PatrolDetailModel>>() {
+              });
     }
     cursor.close();
     return info;
